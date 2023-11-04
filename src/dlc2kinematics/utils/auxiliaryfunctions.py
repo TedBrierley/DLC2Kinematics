@@ -132,7 +132,8 @@ def jointquat_calc(pos, use4d=False):
     pos = pos.reshape((3, 3))
     # print(pos)
     u = pos[1, :] - pos[0, :]
-    v = pos[2, :] - pos[1, :]  #
+    # v = pos[2, :] - pos[1, :]  
+    v = pos[1, :] - pos[2, :]
     # print(u.shape)
     # print(v.shape)
     q_shortest_rotation = vector.q_shortest_rotation(u.astype(float), v.astype(float))
@@ -229,7 +230,7 @@ def doubleangle_calc(pos):
     # print(pos)
     u = pos[1, :] - pos[0, :]
     v = pos[2, :] - pos[1, :]
-
+    # suspect this should be v = pos[1, :] - pos[2, :] as in jointquat_calc - need to check
     rel = v - u
 
     x = rel[0]
